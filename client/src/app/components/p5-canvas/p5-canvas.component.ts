@@ -30,9 +30,15 @@ export class P5CanvasComponent implements OnInit, OnDestroy {
   private createCanvas(): void {
     const sketch = (p: p5) => {
       p.setup = () => {
-        p.createCanvas(640, 480);
+        // ウィンドウサイズに合わせてキャンバスを作成
+        p.createCanvas(p.windowWidth, p.windowHeight);
         // ゲームを初期化
         this.gameService.initialize();
+      };
+
+      // ウィンドウサイズが変更されたときの処理
+      p.windowResized = () => {
+        p.resizeCanvas(p.windowWidth, p.windowHeight);
       };
 
       p.draw = () => {
@@ -42,8 +48,8 @@ export class P5CanvasComponent implements OnInit, OnDestroy {
           return p.keyIsPressed && p.keyCode === code;
         });
 
-        // 描画コマンドを取得
-        const { isoDrawers, topDrawers, level } = this.gameService.generateDrawCommands();
+        // 描画コマンドを取得（画面サイズを渡す）
+        const { isoDrawers, topDrawers, level } = this.gameService.generateDrawCommands(p.width, p.height);
 
         // 背景をクリア
         p.background(0, 138, 230);
@@ -55,16 +61,16 @@ export class P5CanvasComponent implements OnInit, OnDestroy {
           drawer.draw(p);
         }
 
-        // 上面図（Top view）の描画
-        for (const drawer of topDrawers) {
-          drawer.draw(p);
-        }
+        // 上面図（Top view）の描画 - デバッグ用なのでコメントアウト
+        // for (const drawer of topDrawers) {
+        //   drawer.draw(p);
+        // }
 
-        // 上面図にタイルの高さを表示
-        const topRoot = new Vec2(400, 50);
-        const topXAxis = new Vec2(48, 0);
-        const topYAxis = new Vec2(0, 48);
-        RenderUtil.drawTileHeights(p, level, topRoot, topXAxis, topYAxis, 4);
+        // 上面図にタイルの高さを表示 - デバッグ用なのでコメントアウト
+        // const topRoot = new Vec2(400, 50);
+        // const topXAxis = new Vec2(48, 0);
+        // const topYAxis = new Vec2(0, 48);
+        // RenderUtil.drawTileHeights(p, level, topRoot, topXAxis, topYAxis, 4);
 
         // 操作説明を表示
         p.push();

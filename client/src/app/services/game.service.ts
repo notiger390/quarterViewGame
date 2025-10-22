@@ -97,9 +97,11 @@ export class GameService {
 
   /**
    * 描画コマンドを生成
+   * @param canvasWidth キャンバスの幅
+   * @param canvasHeight キャンバスの高さ
    * @returns 描画コマンドの配列とメタデータ
    */
-  generateDrawCommands(): {
+  generateDrawCommands(canvasWidth: number = 800, canvasHeight: number = 600): {
     isoDrawers: Drawer[];
     topDrawers: Drawer[];
     playerPos: Vec2;
@@ -117,10 +119,19 @@ export class GameService {
     const { player, level } = this;
 
     // 座標系の定義
-    const isoRoot = new Vec2(200, 275);
     const isoXAxis = new Vec2(48, 24);
     const isoYAxis = new Vec2(-48, 24);
     const isoZAxis = Vec2.zero().sub(isoXAxis).sub(isoYAxis);
+
+    // マップを画面中央に配置（クォータービュー対応）
+    // マップサイズは8x8
+    const mapSize = 8;
+    // マップの中心位置 = isoRoot + (mapSize/2 * isoXAxis) + (mapSize/2 * isoYAxis)
+    // 画面中央 = (canvasWidth/2, canvasHeight/2)
+    // よって: isoRoot = 画面中央 - (mapSize/2 * isoXAxis) - (mapSize/2 * isoYAxis)
+    const screenCenter = new Vec2(canvasWidth / 2, canvasHeight / 2);
+    const mapCenterOffset = isoXAxis.mul(mapSize / 2).add(isoYAxis.mul(mapSize / 2));
+    const isoRoot = screenCenter.sub(mapCenterOffset);
 
     const topRoot = new Vec2(400, 50);
     const topXAxis = new Vec2(48, 0);
@@ -147,7 +158,7 @@ export class GameService {
       isoRoot,
       isoXAxis,
       isoYAxis,
-      4,
+      8,
       { drawHeight: true }
     );
 
@@ -156,7 +167,7 @@ export class GameService {
       topRoot,
       topXAxis,
       topYAxis,
-      4,
+      8,
       { drawHeight: false }
     );
 
