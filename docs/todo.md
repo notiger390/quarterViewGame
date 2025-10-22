@@ -16,14 +16,25 @@
 
 ---
 
-## Phase 1: 基盤実装 (現在のフェーズ)
+## Phase 1: 基盤実装 ✅ 完了
 
 ### ✅ 完了タスク
 - [x] プロジェクトのセットアップ（Angular 19 + p5.js + PrimeNG）
 - [x] サンプルコードの分析と設計方針の決定
-- [x] ドキュメント構造の整備
+- [x] ドキュメント構造の整備（docs/todo.md、CLAUDE.md、README.md）
+- [x] Vec2クラスの実装
+- [x] Player、Level、AvatarDataモデルの実装
+- [x] Drawer系クラスの実装（QuadDrawer、ShadowDrawer、AvatarDrawer）
+- [x] RenderUtilクラスの実装
+- [x] GameServiceの実装
+- [x] p5-canvasコンポーネントへのゲームロジック統合
+- [x] 動作確認とデバッグ
+- [x] キー入力対応（WASD移動、Spaceジャンプ）
+- [x] レスポンシブ対応（ウィンドウサイズに応じたキャンバスサイズ）
+- [x] マップの中央配置（クォータービュー対応の正確な計算）
+- [x] 8x8フィールドへの拡張
 
-### 🔄 進行中タスク
+### 🔄 過去の進行中タスク（完了済み）
 
 #### 1. モデル層の実装 (`client/src/app/models/`)
 - [ ] **Vec2 クラス** (`vec2.model.ts`)
@@ -163,6 +174,47 @@
 - タスク完了時は `[x]` にマーク
 - 技術的な発見や重要な決定事項は「技術的な課題・メモ」セクションに記録
 - Claude Code と共有すべき情報は適宜 `CLAUDE.md` にも反映
+
+---
+
+## 実装成果まとめ (Phase 1)
+
+### 実装したファイル
+```
+client/src/app/
+├── models/
+│   ├── vec2.model.ts              # 2Dベクトル演算クラス
+│   ├── player.model.ts            # プレイヤー状態管理
+│   ├── level.model.ts             # レベル（マップ）管理
+│   ├── avatar-data.model.ts       # アバターデータ定義
+│   └── drawers/
+│       ├── drawer.interface.ts    # 描画インターフェース
+│       ├── quad-drawer.ts         # 四角形描画
+│       ├── shadow-drawer.ts       # 影描画
+│       └── avatar-drawer.ts       # アバター描画
+├── services/
+│   └── game.service.ts            # ゲームロジック
+├── utils/
+│   └── render.util.ts             # 描画ユーティリティ
+└── components/
+    └── p5-canvas/
+        └── p5-canvas.component.ts # p5.js統合コンポーネント
+```
+
+### 主な機能
+- ✅ クォータービュー（等角図）での描画
+- ✅ WASD キーでの8方向移動
+- ✅ Space キーでのジャンプと重力処理
+- ✅ タイルの高さに応じた衝突判定
+- ✅ レスポンシブ対応（ウィンドウサイズ自動調整）
+- ✅ マップの自動中央配置
+- ✅ カスタムアバターシステム（エディタ対応準備完了）
+
+### 技術的な実装ポイント
+- **クォータービューの中央配置**: `isoRoot = 画面中央 - (マップサイズ/2 × 軸ベクトル)`で正確に計算
+- **depth-based rendering**: 描画順序を制御して奥行き表現
+- **Angular Signals**: ゲーム状態管理にSignalsを活用
+- **p5.js インスタンスモード**: Angularとの統合パターン
 
 ---
 
