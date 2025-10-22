@@ -51,8 +51,8 @@ export class P5CanvasComponent implements OnInit, OnDestroy {
         // 描画コマンドを取得（画面サイズを渡す）
         const { isoDrawers, topDrawers, level } = this.gameService.generateDrawCommands(p.width, p.height);
 
-        // 背景をクリア
-        p.background(0, 138, 230);
+        // 背景をクリア - モダンなライトグレーブルー
+        p.background('#E8EEF2');
 
         // 等角図（Isometric view）の描画
         // depth順にソート（奥から手前へ）

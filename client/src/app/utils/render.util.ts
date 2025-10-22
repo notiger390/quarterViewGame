@@ -68,8 +68,8 @@ export class RenderUtil {
         const topVertexes = this.tileVertexes(tx, ty, height, root, xAxis, yAxis);
         const depth = tx + ty;
 
-        // 上面を描画
-        drawers.push(new QuadDrawer(topVertexes, 'ForestGreen', depth));
+        // 上面を描画 - モダンなミントグリーン
+        drawers.push(new QuadDrawer(topVertexes, '#A8D5BA', depth));
 
         // 高さのあるタイルなら、壁の描画コマンドを生成
         if (height > 0) {
@@ -77,20 +77,20 @@ export class RenderUtil {
           // タイルの底面の4頂点
           const bottomVertexes = topVertexes.map(v => v.sub(wallVec));
 
-          // X軸側の壁面
+          // X軸側の壁面 - 少し暗めのミントグリーン
           drawers.push(
             new QuadDrawer(
               [topVertexes[1], bottomVertexes[1], bottomVertexes[2], topVertexes[2]],
-              'DarkGreen',
+              '#8BB9A0',
               depth
             )
           );
 
-          // Y軸側の壁面
+          // Y軸側の壁面 - 少し暗めのミントグリーン
           drawers.push(
             new QuadDrawer(
               [topVertexes[2], bottomVertexes[2], bottomVertexes[3], topVertexes[3]],
-              'DarkGreen',
+              '#8BB9A0',
               depth
             )
           );

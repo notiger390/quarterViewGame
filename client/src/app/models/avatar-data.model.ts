@@ -85,17 +85,17 @@ export function createDefaultAvatar(): AvatarData {
     id: 'default',
     name: 'デフォルトキャラクター',
     body: {
-      color: 'yellow',
+      color: '#FFE5B4',  // ピーチ系のベージュ（肌色）
       size: 32,
     },
     head: {
-      color: 'yellow',
+      color: '#FFE5B4',  // 肌色
       size: 24,
       offset: { x: 6, y: -16 },
     },
     eyes: {
       type: 'dot',
-      color: 'black',
+      color: '#2C3E50',  // 落ち着いたダークグレー
       size: 3,
       positions: [
         { x: 8, y: -4 },
@@ -103,7 +103,7 @@ export function createDefaultAvatar(): AvatarData {
       ],
     },
     beak: {
-      color: 'orange',
+      color: '#FF9A8B',  // 柔らかいコーラルピンク（口）
       size: 8,
       offset: { x: 12, y: 0 },
     },
