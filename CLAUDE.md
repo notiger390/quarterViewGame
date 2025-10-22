@@ -158,3 +158,31 @@ When adding new dependencies:
 3. **GitHub Pages Base Href**: Production builds for GitHub Pages must include `--base-href=/quarterViewGame/` or routing will break.
 
 4. **Bundle Size**: The budget limits have been intentionally increased. If you need to reduce bundle size, consider lazy loading PrimeNG components.
+
+## Documentation Management
+
+This project maintains multiple documentation files for different purposes:
+
+### Documentation Structure
+
+- **`docs/todo.md`**: Task management, development progress, and technical notes (Japanese)
+  - Tracks current and planned tasks
+  - Records technical decisions and discoveries
+  - Maintained collaboratively with Claude Code
+
+- **`CLAUDE.md`** (this file): Technical instructions for Claude Code and coding standards (English)
+  - Architectural patterns and conventions
+  - Development commands and workflows
+  - Configuration details
+
+- **`README.md`**: Project overview and setup instructions (Japanese)
+  - High-level project description
+  - Getting started guide
+  - Links to other documentation
+
+### Update Guidelines
+
+- When adding new tasks or features, update `docs/todo.md` first
+- Technical decisions and architectural changes should be reflected in `CLAUDE.md`
+- Keep `README.md` focused on user-facing information and setup
+- All communication with Claude Code regarding tasks should be documented in `docs/todo.md` (in Japanese)

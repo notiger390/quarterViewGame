@@ -113,3 +113,17 @@ npm run build -- --base-href=/quarterViewGame/
 | primeng | 19.1 | UIコンポーネント |
 | @primeuix/themes | 1.2 | PrimeNGテーマ |
 | typescript | 5.7 | 型システム |
+
+## ドキュメント
+
+プロジェクトに関する詳細な情報は以下のドキュメントを参照してください:
+
+- **[docs/todo.md](docs/todo.md)**: タスク管理、開発の進捗状況、技術メモ
+- **[CLAUDE.md](CLAUDE.md)**: Claude Code向けの技術的指示、コーディング規約
+- **[sample/quarter-view-sample.js](sample/quarter-view-sample.js)**: クォータービューゲームの参考実装（p5.js）
+
+### ドキュメント管理ルール
+
+- **タスク管理**: `docs/todo.md` で開発タスクと進捗を管理（日本語）
+- **技術仕様**: `CLAUDE.md` でアーキテクチャやコーディング規約を管理（英語）
+- **プロジェクト概要**: このREADMEでプロジェクトの全体像とセットアップ方法を説明（日本語）
